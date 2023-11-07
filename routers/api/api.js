@@ -5,6 +5,7 @@ const {Expanses} =require("../../models");
 
 const loginRegisController = new LoginRegisController
 api.post('/v1/regis', loginRegisController.postRegis);
+api.post('/v1/login', loginRegisController.userLogin);
 api.get('/v1/category',async (req,res)=>{
     const expanse = await Expanses.findAll();
     try {

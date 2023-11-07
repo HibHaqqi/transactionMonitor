@@ -1,6 +1,6 @@
 const LoginService = require("../services/login.service");
 const RegisService = require("../services/regis.service");
-//const loginService = new LoginService;
+const loginService = new LoginService;
 const regisService = new RegisService;
 
 class LoginRegisController {
@@ -20,6 +20,18 @@ class LoginRegisController {
             }
         }
     }
+
+    async userLogin(req,res){
+        try {
+            const payload = req.body;
+            const userLogin = await loginService.loginCheck(payload);
+            res.status(201).json({message:"berhasil login"})
+        } catch (error) {
+            
+        }
+    }
+
+
 }
 
 module.exports = LoginRegisController;
