@@ -1,0 +1,13 @@
+POST http://localhost:3000/api/v1/regis
+Content-Type: application/json
+
+{
+    "name" : "jarwo", 
+    "email" : "haqqi08@gmail.com", 
+    "password": "jarwokuat" , 
+    "role": "admin"
+    
+}
+
+###
+GET http://localhost:3000/api/v1/category
