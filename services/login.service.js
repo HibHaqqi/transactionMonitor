@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
+const jwt = require('jsonwebtoken');
+const secretKey = 'yourSecretKey';
 
 class LoginService {
   async loginCheck(payload) {
@@ -16,7 +18,9 @@ class LoginService {
       if (!isMatch) {
         throw new Error("password tidak sesuai");
       }
-      return //token terbuat 
+      const token = jwt.sign({ email: user.email, userId: user.id }, secretKey, { expiresIn: '1h' });
+      
+      return token;
     } catch (error) {
         throw error;
     }
