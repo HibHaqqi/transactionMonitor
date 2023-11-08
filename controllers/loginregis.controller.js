@@ -31,7 +31,16 @@ class LoginRegisController {
         }
     }
 
+    async isAuthenticated(req,res,next){
+        const token = req.headers.authorization; // Assuming the token is sent in the Authorization header
 
+        try {
+          const decoded = await loginService.authenticatedService(token);
+          req.decoded = decoded; // If token is valid, save the decoded information in the request object
+          next();
+        } catch (error) {
+          return res.status(401).json({ message: error.message });
+    }}
 }
 
 module.exports = LoginRegisController;

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
-const jwt = require('jsonwebtoken');
-const secretKey = 'yourSecretKey';
+const jwt = require("jsonwebtoken");
+const secretKey = "yourSecretKey";
 
 class LoginService {
   async loginCheck(payload) {
@@ -18,15 +18,36 @@ class LoginService {
       if (!isMatch) {
         throw new Error("password tidak sesuai");
       }
-      const token = jwt.sign({ email: user.email, userId: user.id }, secretKey, { expiresIn: '1h' });
-      
+      const token = jwt.sign(
+        { email: user.email, userId: user.id },
+        secretKey,
+        { expiresIn: "1h" }
+      );
+
       return token;
     } catch (error) {
-        throw error;
+      throw error;
     }
   }
-  async isAuthenticated() {
-    
+  async authenticatedService(token) {
+    if (!token) {
+      throw new Error("No token provided");
+    }
+
+    try {
+      const decoded = await new Promise((resolve, reject) => {
+        jwt.verify(token, secretKey, (err, decoded) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(decoded);
+          }
+        });
+      });
+      return decoded;
+    } catch (error) {
+      throw new Error("Failed to authenticate token");
+    }
   }
 }
 
