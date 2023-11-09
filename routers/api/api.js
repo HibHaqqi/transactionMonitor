@@ -2,11 +2,16 @@ const express = require("express");
 const LoginRegisController = require("../../controllers/loginregis.controller");
 const api = express.Router();
 const {Expanses} =require("../../models");
+const WalletController = require("../../controllers/wallet.controller");
 
 const loginRegisController = new LoginRegisController
+const walletController = new WalletController
 api.post('/v1/regis', loginRegisController.postRegis);
 api.post('/v1/login', loginRegisController.userLogin);
-api.get('/v1/category',async (req,res)=>{
+api.post('/v1/addwalet', walletController.addWallet);
+
+
+api.get('/v1/category',loginRegisController.isAuthenticated,async (req,res)=>{
     const expanse = await Expanses.findAll();
     try {
          res.status(200).json({

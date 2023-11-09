@@ -24,8 +24,8 @@ class LoginRegisController {
     async userLogin(req,res){
         try {
             const payload = req.body;
-            const data = await loginService.loginCheck(payload);
-            res.json({data})
+            const token = await loginService.loginCheck(payload);
+            res.json({token})
         } catch (error) {
             res.status(401).json({ error: error.message });
         }
