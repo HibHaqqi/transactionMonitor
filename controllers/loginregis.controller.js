@@ -1,7 +1,10 @@
 const LoginService = require("../services/login.service");
 const RegisService = require("../services/regis.service");
-const loginService = new LoginService;
-const regisService = new RegisService;
+const loginService = new LoginService();
+const regisService = new RegisService();
+
+// JWT
+const { createTokens } = require("../middleware/jwt");
 
 class LoginRegisController {
     async postRegis(req, res) {
@@ -21,26 +24,35 @@ class LoginRegisController {
         }
     }
 
-    async userLogin(req,res){
+    async userLogin(req, res) {
         try {
             const payload = req.body;
             const token = await loginService.loginCheck(payload);
-            res.json({token})
+            const accessToken = createTokens(token);
+            res.cookie("access-token", accessToken, {
+                maxAge: 3600000 * 240,
+            });
+            res.status(200).json({
+                message: "anda berhasil login",
+                statusCode: 200,
+                // role: token.role,
+            });
         } catch (error) {
             res.status(401).json({ error: error.message });
         }
     }
 
-    async isAuthenticated(req,res,next){
+    async isAuthenticated(req, res, next) {
         const token = req.headers.authorization; // Assuming the token is sent in the Authorization header
 
         try {
-          const decoded = await loginService.authenticatedService(token);
-          req.decoded = decoded; // If token is valid, save the decoded information in the request object
-          next();
+            const decoded = await loginService.authenticatedService(token);
+            req.decoded = decoded; // If token is valid, save the decoded information in the request object
+            next();
         } catch (error) {
-          return res.status(401).json({ message: error.message });
-    }}
+            return res.status(401).json({ message: error.message });
+        }
+    }
 }
 
 module.exports = LoginRegisController;
