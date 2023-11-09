@@ -3,12 +3,15 @@ const LoginRegisController = require("../../controllers/loginregis.controller");
 const api = express.Router();
 const {Expanses} =require("../../models");
 const WalletController = require("../../controllers/wallet.controller");
+const ExpansesController = require("../../controllers/expanses.controller");
 
 const loginRegisController = new LoginRegisController
 const walletController = new WalletController
+const expansesController = new ExpansesController
 api.post('/v1/regis', loginRegisController.postRegis);
 api.post('/v1/login', loginRegisController.userLogin);
-api.post('/v1/addwalet', walletController.addWallet);
+api.post('/v1/addwallet', walletController.addWallet);
+api.post('/v1/addexpanse', expansesController.addExpanses)
 
 
 api.get('/v1/category',loginRegisController.isAuthenticated,async (req,res)=>{

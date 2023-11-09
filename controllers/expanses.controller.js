@@ -1,10 +1,22 @@
+const ExpansesService = require("../services/expanses.service");
 
-
+const expansesService = new ExpansesService
 
 
 class ExpansesController{
     // add expanses transaction
     async addExpanses(req,res){
+        try {
+            const payload = req.body
+            const addExpanses = await expansesService.addExpanses(payload);
+            res.status(201).json({ message: "berhasil menambahkan transaksi", data: addExpanses });
+        } catch (error) {
+            res.status(400).json({
+                status: "failed",
+                message: error.message,
+               
+                });
+        }
 
     }
     async editExpanses(req,res){
@@ -31,3 +43,5 @@ class ExpansesController{
 
     }
 }
+
+module.exports = ExpansesController;
