@@ -56,9 +56,9 @@ Content-Type: application/json
 
 {
     "user_id":1,
-    "wallet_id": 1, 
+    
     "expanses_id": 4, 
-    "amount":300000,
+    "amount":400000,
     "date_transaction":"4/6/2023",
     "description" : "Uji coba"
   
