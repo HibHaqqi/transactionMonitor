@@ -12,6 +12,7 @@ api.post('/v1/regis', loginRegisController.postRegis);
 api.post('/v1/login', loginRegisController.userLogin);
 api.post('/v1/addwallet', walletController.addWallet);
 api.post('/v1/addexpanse', expansesController.addExpanses)
+api.put('/v1/editexpanse/:id', expansesController.editExpanses)
 
 
 api.get('/v1/category',loginRegisController.isAuthenticated,async (req,res)=>{

@@ -26,6 +26,38 @@ class ExpansesService{
             console.error('Failed to create transaction:', error);
         }
     }
+    async editExpanses(payload){
+        const {
+            id,
+            user_id,
+            wallet_id,
+            expanses_id,
+            amount,
+            date_transaction,
+            description,
+          } = payload;
+        try {
+            const expanseTrans = await ExpansesTransaction.update({
+                user_id,
+                wallet_id,
+                expanses_id,
+                amount,
+                date_transaction,
+                description,
+              }, {
+                where: { id: id}
+              });
+        
+              if (expanseTrans[0] === 0) {
+                
+                throw new Error("Expanse Transaction Not found");
+              }
+                return expanseTrans;
+                     
+        } catch (error) {
+          throw new Error("Data tidak lengkap");
+        }
+    }
 }
 
 

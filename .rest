@@ -37,13 +37,27 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/api/v1/addexpanse
+POST  http://localhost:3000/api/v1/addexpanse
 Content-Type: application/json
 
 {
     "user_id":1,
     "wallet_id": 1, 
     "expanses_id": 3, 
+    "amount":300000,
+    "date_transaction":"4/6/2023",
+    "description" : "Uji coba"
+  
+}
+
+###
+PUT   http://localhost:3000/api/v1/editexpanse/1
+Content-Type: application/json
+
+{
+    "user_id":1,
+    "wallet_id": 1, 
+    "expanses_id": 4, 
     "amount":300000,
     "date_transaction":"4/6/2023",
     "description" : "Uji coba"
