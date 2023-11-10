@@ -3,6 +3,7 @@ const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const secretKey = "yourSecretKey";
 
+
 class LoginService {
   async loginCheck(payload) {
     const { email, password } = payload;
@@ -17,14 +18,9 @@ class LoginService {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         throw new Error("password tidak sesuai");
+      } else if (isMatch){
+        return user
       }
-      const token = jwt.sign(
-        { email: user.email, userId: user.id },
-        secretKey,
-        { expiresIn: "1h" }
-      );
-
-      return token;
     } catch (error) {
       throw error;
     }

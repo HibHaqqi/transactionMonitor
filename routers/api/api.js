@@ -5,6 +5,11 @@ const {Expanses} =require("../../models");
 const WalletController = require("../../controllers/wallet.controller");
 const ExpansesController = require("../../controllers/expanses.controller");
 
+// JWT
+// use this as middleware to use decoded token
+const {extractToken} = require("../../middleware/jwt")
+
+
 const loginRegisController = new LoginRegisController
 const walletController = new WalletController
 const expansesController = new ExpansesController
@@ -13,6 +18,7 @@ api.post('/v1/login', loginRegisController.userLogin);
 api.post('/v1/addwallet', walletController.addWallet);
 api.post('/v1/addexpanse', expansesController.addExpanses)
 api.put('/v1/editexpanse/:id', expansesController.editExpanses)
+
 
 
 api.get('/v1/category',loginRegisController.isAuthenticated,async (req,res)=>{
