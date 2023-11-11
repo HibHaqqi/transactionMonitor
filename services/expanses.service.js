@@ -53,6 +53,25 @@ class ExpansesService {
       throw new Error("Data tidak lengkap");
     }
   }
+  async deleteExpanses(payload){
+    const {
+      id,
+      
+    } = payload;
+    try {
+      const deletedExpanse = await ExpansesTransaction.destroy({
+        where: { id: id} // Match by the 'id' field
+      });
+      if (deletedExpanse === 0) {
+        throw new Error("Transaction not found");
+      }
+      return deletedExpanse;
+    } catch (error) {
+      throw new Error("Data tidak berhasil dihapus");
+    }
+    
+     
+  }
 }
 
 // jumlah total pengeluaran per bulan

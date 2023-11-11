@@ -16,8 +16,11 @@ const expansesController = new ExpansesController
 api.post('/v1/regis', loginRegisController.postRegis);
 api.post('/v1/login', loginRegisController.userLogin);
 api.post('/v1/addwallet', walletController.addWallet);
+
+// CRUD Expanses
 api.post('/v1/addexpanse', extractToken,expansesController.addExpanses)
 api.put('/v1/editexpanse/:id', expansesController.editExpanses)
+api.delete('/v1/deleteexpanse/:id', expansesController.deleteExpanses)
 
 
 

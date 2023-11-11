@@ -8,7 +8,7 @@ class ExpansesController {
     try {
       const dataCookie = req.user;
       const user_id = dataCookie.id;
-      const payload = {...req.body,user_id}
+      const payload = { ...req.body, user_id };
       console.log(user_id);
       const addExpanses = await expansesService.addExpanses(payload);
       res
@@ -37,7 +37,22 @@ class ExpansesController {
       }
     }
   }
-  async deleteExpanses(req, res) {}
+  async deleteExpanses(req, res) {
+    try {
+      const id = req.params.id;
+      const payload = { ...req.body, id: parseInt(id, 10) };
+      const deleteExpanses = await expansesService.deleteExpanses(payload);
+      res
+      .status(201)
+      .json({ message: "berhasil  hapus transaksi", data: deleteExpanses });
+    } catch (error) {
+      if (error.message === "Transaction not found") {
+        res.status(400).json({ message: "Transaction not found" });
+      } else {
+        res.status(409).json({ message: error.message, stack: error });
+      }
+    }
+  }
   //get data expanses total secara bulanan untuk pie chart bar chart
   async totalMonthlyExpanses(req, res) {}
   //get data expanses total secara bulanan dengan category untuk stack chart
