@@ -6,7 +6,10 @@ class ExpansesController {
   // add expanses transaction
   async addExpanses(req, res) {
     try {
-      const payload = req.body;
+      const dataCookie = req.user;
+      const user_id = dataCookie.id;
+      const payload = {...req.body,user_id}
+      console.log(user_id);
       const addExpanses = await expansesService.addExpanses(payload);
       res
         .status(201)
@@ -20,8 +23,8 @@ class ExpansesController {
   }
   async editExpanses(req, res) {
     try {
-       const id = req.params.id;
-      const payload ={ ...req.body, id: parseInt(id, 10)}
+      const id = req.params.id;
+      const payload = { ...req.body, id: parseInt(id, 10) };
       const editExpanses = await expansesService.editExpanses(payload);
       res
         .status(201)
@@ -30,7 +33,7 @@ class ExpansesController {
       if (error.message === "Expanse Transaction Not found") {
         res.status(400).json({ message: "Expanse Transaction Not found" });
       } else {
-        res.status(409).json({ message: error.message, stack : error });
+        res.status(409).json({ message: error.message, stack: error });
       }
     }
   }
