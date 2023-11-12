@@ -30,11 +30,14 @@ Content-Type: application/json
 
 {
     
-    "user_id" : 1,
-    "category": "ATM BNI",
+    "category": "ATM Mandiri",
     "description": "Rekening operational from gaji"
     
 }
+
+###
+GET  HTTP://localhost:3000/api/v1/getwallet
+
 
 ###
 POST  http://localhost:3000/api/v1/addexpanse
@@ -44,7 +47,7 @@ Content-Type: application/json
     "wallet_id": 1, 
     "expanses_id": 2, 
     "amount":9900,
-    "date_transaction":"12/03/2023",
+    "date_transaction":"07/06/2023",
     "description" : "Uji coba"
   
 }

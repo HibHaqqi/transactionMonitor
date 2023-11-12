@@ -16,7 +16,10 @@ api.use(extractToken);
 
 api.post("/v1/regis", loginRegisController.postRegis);
 api.post("/v1/login", loginRegisController.userLogin);
+
+//Wallet 
 api.post("/v1/addwallet", walletController.addWallet);
+api.get("/v1/getwallet",verifyTokens,walletController.getWalletByUserId)
 
 // CRUD Expanses
 api.post("/v1/addexpanse", extractToken, expansesController.addExpanses);

@@ -6,7 +6,7 @@ router.use('/api', api);
 
 
 router.use('/', (req, res) => {
-    res.console.log("hello world");
+    
 });
 
 module.exports = router;
