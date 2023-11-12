@@ -26,24 +26,7 @@ class LoginService {
     }
   }
   async authenticatedService(token) {
-    if (!token) {
-      throw new Error("No token provided");
-    }
-
-    try {
-      const decoded = await new Promise((resolve, reject) => {
-        jwt.verify(token, secretKey, (err, decoded) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(decoded);
-          }
-        });
-      });
-      return decoded;
-    } catch (error) {
-      throw new Error("Failed to authenticate token");
-    }
+   
   }
 }
 
