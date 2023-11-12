@@ -8,10 +8,12 @@ const ExpansesController = require("../../controllers/expanses.controller");
 // JWT
 // use this as middleware to use decoded token
 const { verifyTokens, extractToken } = require("../../middleware/jwt");
+const IncomeController = require("../../controllers/income.controller");
 
 const loginRegisController = new LoginRegisController();
 const walletController = new WalletController();
 const expansesController = new ExpansesController();
+const incomeController = new IncomeController();
 api.use(extractToken);
 
 api.post("/v1/regis", loginRegisController.postRegis);
@@ -29,6 +31,15 @@ api.delete("/v1/deleteexpanse/:id", expansesController.deleteExpanses);
 //get data Expanses
 api.get("/v1/totalmonthlyexpanses", verifyTokens, expansesController.totalMonthlyExpanses);
 api.get("/v1/recentexpanses", verifyTokens, expansesController.recentExpanses)
+
+// CRUD Income
+api.post("/v1/addincome", extractToken, incomeController.addIncome);
+api.put("/v1/editincome/:id", incomeController.editIncome);
+api.delete("/v1/deleteincome/:id", incomeController.deleteIncome);
+
+//get data Expanses
+api.get("/v1/totalmonthlyincome", verifyTokens, incomeController.totalMonthlyIncome);
+api.get("/v1/recentincome", verifyTokens, incomeController.recentIncome)
 
 api.get("/logout", (req, res) => {
   // Clear the JWT token by setting an expired cookie

@@ -77,3 +77,42 @@ GET http://localhost:3000/api/v1/totalmonthlyexpanses
 
 ###
 GET http://localhost:3000/api/v1/recentexpanses
+
+///// income 
+
+###
+POST  http://localhost:3000/api/v1/addincome
+Content-Type: application/json
+
+{
+    "wallet_id": 1, 
+    "income_id": 2, 
+    "amount":140000,
+    "date_transaction":"07/06/2023",
+    "description" : "Uji coba"
+  
+}
+
+###
+PUT   http://localhost:3000/api/v1/editincome/2
+Content-Type: application/json
+
+{
+    "user_id":1,
+    "wallet_id": 1, 
+    "income_id": 1, 
+    "amount":400000,
+    "date_transaction":"4/6/2023",
+    "description" : "Uji coba"
+  
+}
+###
+DELETE http://localhost:3000/api/v1/deleteincome/2
+
+
+###
+GET http://localhost:3000/api/v1/totalmonthlyincome
+
+
+###
+GET http://localhost:3000/api/v1/recentincome
