@@ -1,4 +1,4 @@
-const { ExpansesTransaction , sequelize} = require("../models");
+const { ExpansesTransaction , sequelize, Expanses,Wallet} = require("../models");
 const { Sequelize } = require("sequelize");
 
 class ExpansesService {
@@ -85,6 +85,36 @@ class ExpansesService {
       { replacements: { userId: userId }, type: Sequelize.QueryTypes.SELECT }
     );
     return result;
+  }
+
+  async recentExpanse(userId){
+    const transactions = await ExpansesTransaction.findAll({
+      where: { user_id: userId },
+      limit: 5,
+      order: [["date_transaction", "DESC"]],
+      attributes: ["id", "amount", "date_transaction"],
+      include: [
+        { model: Expanses, attribute: ["category"] },
+        { model: Wallet, attribute: ["category"] },
+      ],
+    });
+
+    const formattedTransactions = transactions.map((transaction) => {
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        day: "2-digit",
+        month: "short",
+        year: "2-digit",
+      }).format(transaction.date_transaction);
+
+      return {
+        id: transaction.id,
+        expanses_id: transaction.Expanse.category,
+        amount: transaction.amount,
+        date_transaction: formattedDate,
+        wallet: transaction.Wallet.category,
+      };
+    });
+    return formattedTransactions;
   }
 }
 

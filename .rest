@@ -73,3 +73,7 @@ GET http://localhost:3000/api/logout
 
 ###
 GET http://localhost:3000/api/v1/totalmonthlyexpanses
+
+
+###
+GET http://localhost:3000/api/v1/recentexpanses

@@ -28,6 +28,7 @@ api.delete("/v1/deleteexpanse/:id", expansesController.deleteExpanses);
 
 //get data Expanses
 api.get("/v1/totalmonthlyexpanses", verifyTokens, expansesController.totalMonthlyExpanses);
+api.get("/v1/recentexpanses", verifyTokens, expansesController.recentExpanses)
 
 api.get("/logout", (req, res) => {
   // Clear the JWT token by setting an expired cookie

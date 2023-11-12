@@ -74,7 +74,21 @@ class ExpansesController {
   //get data expanses total secara bulanan dengan category untuk stack chart
   async totalMonthlyExpansesWithCategory(req, res) {}
   // data table untuk expanses terakhir
-  async recentExpanses(req, res) {}
+  async recentExpanses(req, res) {
+    try {
+      const dataCookie = req.user;
+      const user_id = dataCookie.id;
+      const recentExpanse =
+        await expansesService.recentExpanse(user_id);
+        res.status(201).json({ status: "success", data: recentExpanse });
+    } catch (error) {
+      res.status(400).json({
+        status: "failed",
+        message: error.message,
+        stack: error,
+      });
+    }
+  }
 
   // memanggil data bulan yang ada dalam data base untuk di tampilkan di menu drop down
   async filterAvailableMonthlyExpanses(req, res) {}
