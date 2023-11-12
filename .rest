@@ -42,8 +42,8 @@ Content-Type: application/json
 
 {
     "wallet_id": 1, 
-    "expanses_id": 5, 
-    "amount":20000,
+    "expanses_id": 2, 
+    "amount":9900,
     "date_transaction":"12/03/2023",
     "description" : "Uji coba"
   
@@ -67,3 +67,6 @@ DELETE http://localhost:3000/api/v1/deleteexpanse/8
 
 ###
 GET http://localhost:3000/api/logout
+
+###
+GET http://localhost:3000/api/v1/totalmonthlyexpanses

@@ -43,8 +43,8 @@ class ExpansesController {
       const payload = { ...req.body, id: parseInt(id, 10) };
       const deleteExpanses = await expansesService.deleteExpanses(payload);
       res
-      .status(201)
-      .json({ message: "berhasil  hapus transaksi", data: deleteExpanses });
+        .status(201)
+        .json({ message: "berhasil  hapus transaksi", data: deleteExpanses });
     } catch (error) {
       if (error.message === "Transaction not found") {
         res.status(400).json({ message: "Transaction not found" });
@@ -54,7 +54,23 @@ class ExpansesController {
     }
   }
   //get data expanses total secara bulanan untuk pie chart bar chart
-  async totalMonthlyExpanses(req, res) {}
+  async totalMonthlyExpanses(req, res) {
+    try {
+      const dataCookie = req.user;
+      const user_id = dataCookie.id;
+
+      const totalMonthlyExpanses = await expansesService.totalMonthlyExpanses(
+        user_id
+      );
+      res.status(201).json({ status: "success", data: totalMonthlyExpanses });
+    } catch (error) {
+      res.status(400).json({
+        status: "failed",
+        message: error.message,
+        stack: error,
+      });
+    }
+  }
   //get data expanses total secara bulanan dengan category untuk stack chart
   async totalMonthlyExpansesWithCategory(req, res) {}
   // data table untuk expanses terakhir
