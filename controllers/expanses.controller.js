@@ -78,9 +78,8 @@ class ExpansesController {
     try {
       const dataCookie = req.user;
       const user_id = dataCookie.id;
-      const recentExpanse =
-        await expansesService.recentExpanse(user_id);
-        res.status(201).json({ status: "success", data: recentExpanse });
+      const recentExpanse = await expansesService.recentExpanse(user_id);
+      res.status(201).json({ status: "success", data: recentExpanse });
     } catch (error) {
       res.status(400).json({
         status: "failed",
@@ -91,7 +90,28 @@ class ExpansesController {
   }
 
   // memanggil data bulan yang ada dalam data base untuk di tampilkan di menu drop down
-  async filterAvailableMonthlyExpanses(req, res) {}
+  async TotalExpansesByFilterMonth(req, res) {
+    try {
+      const dataCookie = req.user;
+      const user_id = dataCookie.id;
+      const selectedMonth = req.query.selectedMonth;
+      const selectedYear = req.query.selectedYear;
+      if (!selectedMonth || !selectedYear) {
+        return res.status(400).json({
+          status: "failed",
+          message: "Both selectedYear and selectedMonth are required.",
+        });
+      }
+      const totalExpansesFilterByMonth =
+        await expansesService.totalExpansesFilterByMonth(user_id,selectedMonth,selectedYear);
+      const transformedExpenses = totalExpansesFilterByMonth.map((item) => ({
+        total_amount: parseFloat(item.getDataValue("total_amount")),
+        category: item.Expanse.category,
+      }));
+
+      res.status(201).json({ status: "success", data: transformedExpenses });
+    } catch (error) {}
+  }
 }
 
 module.exports = ExpansesController;

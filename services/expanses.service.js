@@ -1,5 +1,10 @@
-const { ExpansesTransaction , sequelize, Expanses,Wallet} = require("../models");
-const { Sequelize } = require("sequelize");
+const {
+  ExpansesTransaction,
+  sequelize,
+  Expanses,
+  Wallet,
+} = require("../models");
+const { Sequelize,Op } = require("sequelize");
 
 class ExpansesService {
   // expanses add
@@ -87,7 +92,7 @@ class ExpansesService {
     return result;
   }
 
-  async recentExpanse(userId){
+  async recentExpanse(userId) {
     const transactions = await ExpansesTransaction.findAll({
       where: { user_id: userId },
       limit: 5,
@@ -115,6 +120,40 @@ class ExpansesService {
       };
     });
     return formattedTransactions;
+  }
+
+  async totalExpansesFilterByMonth(userId, selectedMonth, selectedYear) {
+    const result = await ExpansesTransaction.findAll({
+      attributes: [
+        [
+          Sequelize.fn(
+            "DATE_TRUNC",
+            "month",
+            Sequelize.col("date_transaction")
+          ),
+          "month",
+        ],
+        [Sequelize.col("expanses_id"), "category"],
+        [Sequelize.fn("SUM", Sequelize.col("amount")), "total_amount"],
+      ],
+      where: {
+        user_id: userId,
+        date_transaction: {
+          [Op.and]: [
+            { [Op.gte]: new Date(selectedYear, selectedMonth - 1, 1) },
+            { [Op.lt]: new Date(selectedYear, selectedMonth, 1) },
+          ],
+        },
+      },
+      include: {
+        model: Expanses,
+        attributes: ["category"], // Assuming 'category' is a field in the Expanses model
+      },
+      group: ["expanses_id", "month", "Expanse.id", "Expanse.category"],
+      order: [Sequelize.col("month")],
+    });
+
+    return result;
   }
 }
 

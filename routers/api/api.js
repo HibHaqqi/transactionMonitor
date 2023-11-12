@@ -31,6 +31,7 @@ api.delete("/v1/deleteexpanse/:id", expansesController.deleteExpanses);
 //get data Expanses
 api.get("/v1/totalmonthlyexpanses", verifyTokens, expansesController.totalMonthlyExpanses);
 api.get("/v1/recentexpanses", verifyTokens, expansesController.recentExpanses)
+api.get("/v1/filterexpanse", expansesController.TotalExpansesByFilterMonth)
 
 // CRUD Income
 api.post("/v1/addincome", extractToken, incomeController.addIncome);
