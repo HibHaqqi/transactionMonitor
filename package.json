@@ -23,6 +23,8 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
-    "sequelize": "^6.34.0"
+    "sequelize": "^6.34.0",
+    "swagger-jsdoc": "^5.0.1",
+    "swagger-ui-express": "^5.0.0"
   }
 }
