@@ -130,12 +130,148 @@ expanse.post("/v1/add",  expansesController.addExpanses);
  *         description: Internal Server Error. Failed to update expense transaction.
  */
 expanse.put("/v1/edit/:id", expansesController.editExpanses);
-
+/**
+ * @swagger
+ * /api/expanse/v1/delete/{id}:
+ *   delete:
+ *     tags: [Expanse]
+ *     summary: Delete an expense transaction by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the expense transaction to delete.
+ *     responses:
+ *       '201':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: berhasil hapus transaksi
+ *               data:
+ *                 // Include relevant details if needed
+ *       '400':
+ *         description: Bad Request. Check the request parameters and try again.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Transaction not found
+ *       '409':
+ *         description: Conflict. Failed to delete expense transaction.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Error message
+ *               stack: Error stack trace
+ */
 expanse.delete("/v1/delete/:id", expansesController.deleteExpanses);
 
 //get data Expanses
+/**
+ * @swagger
+ * /api/expanse/v1/totalmonthly:
+ *   get:
+ *     tags: [Expanse]
+ *     summary: Get total monthly expanses
+ *     responses:
+ *       '201':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: success
+ *               data:
+ *                 - month: '2023-11-01T00:00:00.000Z'
+ *                   total_amount: 500
+ *       '400':
+ *         description: Failed response
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: failed
+ *               message: Error message
+ *               stack: Error stack trace
+ */
 expanse.get("/v1/totalmonthly",  expansesController.totalMonthlyExpanses);
+
+/**
+ * @swagger
+ * /api/expanse/v1/recent:
+ *   get:
+ *     tags: [Expanse]
+ *     summary: Get recent expanses 5 input
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: success
+ *               data:
+ *                 - id: 12
+ *                   expanses_id: Housing
+ *                   amount: 10000
+ *                   date_transaction: Jul 06, 23
+ *                   wallet: ATM Mandiri
+ *                 - id: 14
+ *                   expanses_id: Groceries
+ *                   amount: 20000
+ *                   date_transaction: Jul 06, 23
+ *                   wallet: ATM Mandiri
+ *       '400':
+ *         description: Failed response
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: failed
+ *               message: Error message
+ *               stack: Error stack trace
+ */
 expanse.get("/v1/recent", expansesController.recentExpanses)
+/**
+ * @swagger
+ * /api/expanse/v1/filter:
+ *   get:
+ *     tags: [Expanse]
+ *     summary: Filter expanses by month and year
+ *     parameters:
+ *       - in: query
+ *         name: selectedMonth
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The selected month (e.g., 05).
+ *       - in: query
+ *         name: selectedYear
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The selected year (e.g., 2023).
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: success
+ *               data:
+ *                 - total_amount: 10000
+ *                   category: "Food & Drink"
+ *                 - total_amount: 10000
+ *                   category: "Groceries"
+ *       '400':
+ *         description: Failed response
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: failed
+ *               message: Error message
+ *               stack: Error stack trace
+ */
+
+
 expanse.get("/v1/filter", expansesController.TotalExpansesByFilterMonth)
 
 

@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ###
-GET  HTTP://localhost:3000/api/v1/getwallet
+GET  HTTP://localhost:3000/api/wallet/v1/getwallet
 
 
 ###
@@ -76,11 +76,11 @@ GET http://localhost:3000/api/expanse/v1/totalmonthly
 
 
 ###
-GET http://localhost:3000/api/expanse/v1/recentexpanses
+GET http://localhost:3000/api/expanse/v1/recent
 
 
 ###
-GET  http://localhost:3000/api/expanse/v1/filter?selectedMonth=06&selectedYear=2023
+GET  http://localhost:3000/api/expanse/v1/filter?selectedMonth=05&selectedYear=2023
 
 
 
