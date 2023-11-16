@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/v1/regis
+POST http://localhost:3000/users/v1/regis
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/v1/category
 
 ###
-POST  http://localhost:3000/api/v1/login
+POST  http://localhost:3000/api/users/v1/login
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/api/v1/addwallet
+POST http://localhost:3000/api/wallet/v1/addwallet
 Content-Type: application/json
 
 {
@@ -36,11 +36,11 @@ Content-Type: application/json
 }
 
 ###
-GET  HTTP://localhost:3000/api/v1/getwallet
+GET  HTTP://localhost:3000/api/wallet/v1/getwallet
 
 
 ###
-POST  http://localhost:3000/api/v1/addexpanse
+POST  http://localhost:3000/api/expanse/v1/add
 Content-Type: application/json
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 
 ###
-PUT   http://localhost:3000/api/v1/editexpanse/1
+PUT   http://localhost:3000/api/expanse/v1/edit/1
 Content-Type: application/json
 
 {
@@ -66,21 +66,21 @@ Content-Type: application/json
   
 }
 ###
-DELETE http://localhost:3000/api/v1/deleteexpanse/8
+DELETE http://localhost:3000/api/expanse/v1/delete/8
 
 ###
-GET http://localhost:3000/api/logout
+GET http://localhost:3000/api/users/logout
 
 ###
-GET http://localhost:3000/api/v1/totalmonthlyexpanses
-
-
-###
-GET http://localhost:3000/api/v1/recentexpanses
+GET http://localhost:3000/api/expanse/v1/totalmonthly
 
 
 ###
-GET  http://localhost:3000/api/v1/filterexpanse?selectedMonth=12&selectedYear=2023
+GET http://localhost:3000/api/expanse/v1/recent
+
+
+###
+GET  http://localhost:3000/api/expanse/v1/filter?selectedMonth=05&selectedYear=2023
 
 
 
