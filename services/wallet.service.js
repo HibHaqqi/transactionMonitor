@@ -1,4 +1,4 @@
-const { Wallet } = require("../models");
+const { Wallet,sequelize,ExpansesTransaction,IncomeTransaction } = require("../models");
 
 class WalletService {
   // add new wallet
@@ -22,6 +22,51 @@ class WalletService {
       attributes: ["id", "category"],
     });
     return wallet;
+  }
+  async getSaldoMonthly(userId,walletId) {
+    const result = await sequelize.query(
+      `
+      SELECT
+        user_id,
+        wallet_id,
+        DATE_FORMAT(date, '%Y-%m') AS month,
+        SUM(SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END) - SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END)) AS totalTransaction
+      FROM
+        (
+          SELECT
+            'expense' AS type,
+            user_id,
+            wallet_id,
+            date,
+            amount
+          FROM
+            ExpenseTransaction
+          WHERE
+            user_id = :userId
+            AND wallet_id = :walletId
+          UNION ALL
+          SELECT
+            'income' AS type,
+            user_id,
+            wallet_id,
+            date,
+            amount
+          FROM
+            IncomeTransaction
+          WHERE
+            user_id = :userId
+            AND wallet_id = :walletId
+        ) AS combined
+      GROUP BY
+        user_id, wallet_id, month
+      `,
+      {
+        replacements: { userId,walletId },
+        type: sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    res.json(result);
   }
 }
 

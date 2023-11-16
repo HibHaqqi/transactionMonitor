@@ -32,6 +32,23 @@ class WalletController {
       });
     }
   }
+  async getSaldoMonthly(req, res) {
+    try {
+      const dataCookie = req.user;
+      const userId = dataCookie.id;
+      const walletId= req.query.walletId;
+      const getSaldoMonthly = await walletService.getSaldoMonthly(userId,walletId);
+      res.status(201).json({ status: "success", data: getSaldoMonthly });
+
+    } catch (error) {
+      res.status(400).json({
+        status: "failed",
+        message: error.message,
+        stack: error,
+      });
+    }
+    
+  }
 }
 
 module.exports = WalletController;
