@@ -3,10 +3,9 @@
 module.exports = {
       "development": {
         "username": "postgres",
-        "password": "12345",
+        "password": "123",
         "database": "transmon",
         "host": "127.0.0.1",
-        "port": "5000",
         "dialect": "postgres"
       },
       "test": {

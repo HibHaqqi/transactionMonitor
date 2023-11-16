@@ -20,8 +20,8 @@ api.post("/v1/regis", loginRegisController.postRegis);
 api.post("/v1/login", loginRegisController.userLogin);
 
 //Wallet 
-api.post("/v1/addwallet", walletController.addWallet);
-api.get("/v1/getwallet",verifyTokens,walletController.getWalletByUserId)
+api.post("/v1/wallet", walletController.addWallet);
+api.get("/v1/wallet",verifyTokens,walletController.getWalletByUserId)
 
 // CRUD Expanses
 api.post("/v1/addexpanse", extractToken, expansesController.addExpanses);
