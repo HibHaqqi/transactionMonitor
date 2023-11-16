@@ -3,6 +3,7 @@ const router = require("./routers/router");
 const morgan = require("morgan");
 const app = express();
 const path = require("path");
+const cors = require('cors');
 
 // dotENV
 require("dotenv").config();
@@ -13,7 +14,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 app.use(morgan("dev"));
-
+app.use(cors());
 app.use(express.json());
 app.use(
   express.urlencoded({
