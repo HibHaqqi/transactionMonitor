@@ -58,7 +58,7 @@ class ExpansesController {
     try {
       const dataCookie = req.user;
       const user_id = dataCookie.id;
-
+      
       const totalMonthlyExpanses = await expansesService.totalMonthlyExpanses(
         user_id
       );

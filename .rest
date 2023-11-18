@@ -37,9 +37,12 @@ Content-Type: application/json
 
 ###
 GET  HTTP://localhost:3000/api/wallet/v1/getwallet
+###
+GET  HTTP://localhost:3000/api/wallet/v1/saldomonthly
+
 
 ###
-GET  HTTP://localhost:3000/api/wallet/v1/saldomonthly?walletId=1
+GET  HTTP://localhost:3000/api/wallet/v1/walletsaldo
 ###
 POST  http://localhost:3000/api/expanse/v1/add
 Content-Type: application/json
@@ -118,7 +121,7 @@ DELETE http://localhost:3000/api/v1/deleteincome/2
 
 
 ###
-GET http://localhost:3000/api/v1/totalmonthlyincome
+GET http://localhost:3000/api/income/v1/totalmonthly
 
 
 ###
