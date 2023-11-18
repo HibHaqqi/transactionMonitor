@@ -112,6 +112,22 @@ class ExpansesController {
       res.status(201).json({ status: "success", data: transformedExpenses });
     } catch (error) {}
   }
+  async AllExpanses(req,res){
+  try {
+    const dataCookie = req.user;
+    const user_id = dataCookie.id;
+    const AllExpanses = await expansesService.getAllExpanse(user_id)
+    res.status(200).json({ status: "success", data: AllExpanses })
+  } catch (error) {
+    res.status(400).json({
+      status: "failed",
+      message: error.message,
+      stack: error,
+    });
+  }
+  }
 }
+
+
 
 module.exports = ExpansesController;

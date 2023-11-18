@@ -153,7 +153,14 @@ class ExpansesService {
       order: [Sequelize.col("month")],
     });
 
+   
+
     return result;
+    
+  }
+  async getAllExpanse(userId){
+    const result = await ExpansesTransaction.findAll()
+    return result
   }
 }
 
