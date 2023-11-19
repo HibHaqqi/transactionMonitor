@@ -16,6 +16,7 @@ const createTokens = (user) => {
 
 const extractToken = (req, res, next) => {
   const accessToken = req.cookies["access-token"];
+  console.log("Access Token:", accessToken);
   if (accessToken) {
     const decodedToken = verify(accessToken, jwk);
     req.user = decodedToken;

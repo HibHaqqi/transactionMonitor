@@ -30,7 +30,7 @@ Content-Type: application/json
 
 {
     
-    "category": "ATM Mandiri",
+    "category": "ATM BCA",
     "description": "Rekening operational from gaji"
     
 }
@@ -42,15 +42,15 @@ GET  HTTP://localhost:3000/api/wallet/v1/saldomonthly
 
 
 ###
-GET  HTTP://localhost:3000/api/wallet/v1/walletsaldo
+post HTTP://localhost:3000/api/wallet/v1/walletsaldo    
 ###
 POST  http://localhost:3000/api/expanse/v1/add
 Content-Type: application/json
 
 {
-    "wallet_id": 1, 
+    "wallet_id": 2, 
     "expanses_id": 2, 
-    "amount":9900,
+    "amount":200,
     "date_transaction":"07/06/2023",
     "description" : "Uji coba"
   
@@ -77,7 +77,8 @@ GET http://localhost:3000/api/users/logout
 
 ###
 GET http://localhost:3000/api/expanse/v1/totalmonthly
-
+###
+GET http://localhost:3000/api/expanse/v1/getall
 
 ###
 GET http://localhost:3000/api/expanse/v1/recent
@@ -91,13 +92,13 @@ GET  http://localhost:3000/api/expanse/v1/filter?selectedMonth=05&selectedYear=2
 ///// income 
 
 ###
-POST  http://localhost:3000/api/v1/addincome
+POST  http://localhost:3000/api/income/v1/add
 Content-Type: application/json
 
 {
-    "wallet_id": 1, 
+    "wallet_id": 2, 
     "income_id": 2, 
-    "amount":140000,
+    "amount":1000,
     "date_transaction":"07/06/2023",
     "description" : "Uji coba"
   

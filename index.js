@@ -6,7 +6,7 @@ const path = require("path");
 const cors = require('cors');
 
 // dotENV
-require("dotenv").config();
+require("dotenv").config(); 
 const port = process.env.PORT;
 
 // CookieParser
@@ -14,7 +14,13 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 app.use(morgan("dev"));
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(
   express.urlencoded({

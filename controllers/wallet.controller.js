@@ -42,8 +42,17 @@ class WalletController {
 
   async getSaldoByWallet(req,res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
+      const params= req.body
+      const user_id = params.user_id
+      // Check if user_id is provided
+      if (!user_id) {
+        return res.status(400).json({
+          status: "failed",
+          message: "User ID is required",
+        });
+      }
+     // const dataCookie = req.user;
+      //const user_id = dataCookie.id;
       const getWalletByUserId = await walletService.getSaldoByWallet(user_id);
       res.status(201).json({ status: "success", data: getWalletByUserId });
     } catch (error) {
@@ -57,8 +66,17 @@ class WalletController {
 
   async getSaldoMonthly(req, res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
+      //const dataCookie = req.user;
+      //const user_id = dataCookie.id;
+      const params= req.body
+      const user_id = params.user_id
+      // Check if user_id is provided
+      if (!user_id) {
+        return res.status(400).json({
+          status: "failed",
+          message: "User ID is required",
+        });
+      }
       const expenseData = await expansesService.totalMonthlyExpanses(user_id);
       const incomeData = await incomeService.totalMonthlyIncome(user_id);
       // Create sets of unique months for both expense and income data

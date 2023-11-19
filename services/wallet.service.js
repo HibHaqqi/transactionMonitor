@@ -63,7 +63,7 @@ class WalletService {
         const saldo = totalIncome - totalExpense;
 
         return {
-          wallet_id: wallet.id,
+          category: wallet.category,
           saldo,
         };
       });
