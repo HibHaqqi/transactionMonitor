@@ -13,7 +13,7 @@ api.use(extractToken);
 
 
 api.use('/users',users);
-api.use('/expanse',extractToken,expanse);
+api.use('/expanse',expanse);
 api.use('/income',extractToken,income)
 api.use('/wallet',extractToken,wallet);
 

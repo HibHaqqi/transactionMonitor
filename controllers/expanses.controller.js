@@ -5,9 +5,9 @@ const expansesService = new ExpansesService();
 class ExpansesController {
   // add expanses transaction
   async addExpanses(req, res) {
+    console.log(req.body);
     try {
       const payload = req.body;
-      console.log(user_id);
       const addExpanses = await expansesService.addExpanses(payload);
       res
         .status(201)
@@ -38,7 +38,7 @@ class ExpansesController {
   async deleteExpanses(req, res) {
     try {
     
-      const payload = req.body
+      const payload = req.params.id
       const deleteExpanses = await expansesService.deleteExpanses(payload);
       res
         .status(201)

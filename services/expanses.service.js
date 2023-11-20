@@ -65,8 +65,10 @@ class ExpansesService {
     }
   }
   async deleteExpanses(payload) {
-    const { id } = payload;
+    const  id  = payload;
+    console.log(id);
     try {
+      
       const deletedExpanse = await ExpansesTransaction.destroy({
         where: { id: id }, // Match by the 'id' field
       });
