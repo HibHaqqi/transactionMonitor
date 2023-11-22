@@ -2,6 +2,7 @@ const { sign, verify } = require("jsonwebtoken");
 const jwk = "your_secret_key";
 
 const createTokens = (user) => {
+  const expiresIn = 60*60*24
   const accessToken = sign(
     {
       id: user.id,
@@ -9,7 +10,8 @@ const createTokens = (user) => {
       email: user.email,
       role: user.role,
     },
-    jwk
+    jwk,
+    {expiresIn:expiresIn}
   );
   return accessToken;
 };

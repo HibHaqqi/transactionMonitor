@@ -23,7 +23,8 @@ class ExpansesController {
     try {
       
       const payload = req.body
-      const editExpanses = await expansesService.editExpanses(payload);
+      const id = req.params.id
+      const editExpanses = await expansesService.editExpanses(payload,id);
       res
         .status(201)
         .json({ message: "berhasil  edit transaksi", data: editExpanses });

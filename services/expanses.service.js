@@ -31,13 +31,12 @@ class ExpansesService {
       console.error("Failed to create transaction:", error);
     }
   }
-  async editExpanses(payload) {
+  async editExpanses(payload,id) {
     const {
-      id,
       user_id,
       wallet_id,
-      expanses_id,
       amount,
+      expanses_id,
       date_transaction,
       description,
     } = payload;
