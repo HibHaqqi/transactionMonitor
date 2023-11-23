@@ -22,7 +22,7 @@ class IncomeController {
     try {
       const payload = req.body;
       const id = req.params.id;
-      const editIncome = await incomeService.editIncome(payload,id);
+      const editIncome = await incomeService.editIncome(payload, id);
       res
         .status(201)
         .json({ message: "berhasil  edit transaksi", data: editIncome });
@@ -36,7 +36,7 @@ class IncomeController {
   }
   async deleteIncome(req, res) {
     try {
-      const payload = req.params.id
+      const payload = req.params.id;
       const deleteIncome = await incomeService.deleteIncome(payload);
       res
         .status(201)
@@ -52,7 +52,7 @@ class IncomeController {
   //get data Income total secara bulanan untuk pie chart bar chart
   async totalMonthlyIncome(req, res) {
     try {
-      const user_id = req.body
+      const user_id = req.body;
 
       const totalMonthlyIncome = await incomeService.totalMonthlyIncome(
         user_id
@@ -71,7 +71,7 @@ class IncomeController {
   // data table untuk Income terakhir
   async recentIncome(req, res) {
     try {
-      const user_id = req.body
+      const user_id = req.body;
       const recentIncome = await incomeService.recentIncome(user_id);
       res.status(201).json({ status: "success", data: recentIncome });
     } catch (error) {
@@ -85,5 +85,20 @@ class IncomeController {
 
   // memanggil data bulan yang ada dalam data base untuk di tampilkan di menu drop down
   async filterAvailableMonthlyIncome(req, res) {}
+
+  async allIncome(req, res) {
+    try {
+      const user_id = req.body;
+      const AllIncome = await incomeService.getAllIncome(user_id);
+      res.status(200).json({ status: "success", data: AllIncome });
+    } catch (error) {
+      res.status(400).json({
+        status: "failed",
+        message: error.message,
+        stack: error,
+      });
+    }
+  }
 }
+
 module.exports = IncomeController;
