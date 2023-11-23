@@ -11,9 +11,7 @@ const incomeService = new IncomeService();
 class WalletController {
   async addWallet(req, res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
-      const payload = { ...req.body, user_id };
+      const payload = req.body;
       const newWallet = await walletService.addWallet(payload);
       res
         .status(201)
@@ -42,8 +40,7 @@ class WalletController {
 
   async getSaldoByWallet(req,res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
+      const user_id = req.query.user_id
       const getWalletByUserId = await walletService.getSaldoByWallet(user_id);
       res.status(201).json({ status: "success", data: getWalletByUserId });
     } catch (error) {
@@ -57,8 +54,8 @@ class WalletController {
 
   async getSaldoMonthly(req, res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
+      const dataCookie = req.body;
+      const user_id = dataCookie.user_id;
       const expenseData = await expansesService.totalMonthlyExpanses(user_id);
       const incomeData = await incomeService.totalMonthlyIncome(user_id);
       // Create sets of unique months for both expense and income data
