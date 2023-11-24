@@ -229,5 +229,6 @@ income.get("/v1/totalmonthly", incomeController.totalMonthlyIncome);
  *               stack: Error stack trace
  */
 income.get("/v1/recent", incomeController.recentIncome);
+income.get("/v1/getall",incomeController.allIncome)
 
 module.exports = income;

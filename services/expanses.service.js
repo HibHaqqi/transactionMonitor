@@ -31,13 +31,12 @@ class ExpansesService {
       console.error("Failed to create transaction:", error);
     }
   }
-  async editExpanses(payload) {
+  async editExpanses(payload,id) {
     const {
-      id,
       user_id,
       wallet_id,
-      expanses_id,
       amount,
+      expanses_id,
       date_transaction,
       description,
     } = payload;
@@ -65,8 +64,10 @@ class ExpansesService {
     }
   }
   async deleteExpanses(payload) {
-    const { id } = payload;
+    const  id  = payload;
+    console.log(id);
     try {
+      
       const deletedExpanse = await ExpansesTransaction.destroy({
         where: { id: id }, // Match by the 'id' field
       });
