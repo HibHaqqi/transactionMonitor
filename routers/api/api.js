@@ -9,17 +9,13 @@ const { Expanses } = require("../../models");
 
 // JWT
 // use this as middleware to use decoded token
-api.use(extractToken);
+// api.use(extractToken);
 
 
 api.use('/users',users);
-api.use('/expanse',extractToken,expanse);
+api.use('/expanse',expanse);
 api.use('/income',extractToken,income)
-api.use('/wallet',extractToken,wallet);
-
-
-
-
+api.use('/wallet',wallet);
 
 
 

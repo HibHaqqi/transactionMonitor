@@ -274,5 +274,7 @@ expanse.get("/v1/recent", expansesController.recentExpanses)
 
 expanse.get("/v1/filter", expansesController.TotalExpansesByFilterMonth)
 
+expanse.get("/v1/getall",expansesController.AllExpanses)
+
 
 module.exports =expanse;

@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: `user_id`,
 	      onDelete: "CASCADE" // jika user dihapus maka wallet dihapus 
       })
+      this.hasMany(models.ExpansesTransaction,{
+        foreignKey:"wallet_id"
+      })
+      this.hasMany(models.IncomeTransaction,{
+        foreignKey: "wallet_id"
+      })
     }
   }
   Wallet.init({

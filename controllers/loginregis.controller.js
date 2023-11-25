@@ -27,14 +27,17 @@ class LoginRegisController {
     async userLogin(req, res) {
         try {
             const payload = req.body;
-            const token = await loginService.loginCheck(payload);
-            const accessToken = createTokens(token);
-            res.cookie("access-token", accessToken, {
-                maxAge: 3600000 * 240,
-            });
+            const response = await loginService.loginCheck(payload);
+            console.log(response.dataValues);
+            const token = createTokens(response.dataValues);
+            // res.cookie("access-token", accessToken, {
+            //     maxAge: 3600000 * 240,
+            // });
             res.status(200).json({
                 message: "anda berhasil login",
                 statusCode: 200,
+                token,
+                data:response
                 // role: token.role,
             });
         } catch (error) {

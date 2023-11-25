@@ -5,11 +5,9 @@ const expansesService = new ExpansesService();
 class ExpansesController {
   // add expanses transaction
   async addExpanses(req, res) {
+    console.log(req.body);
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
-      const payload = { ...req.body, user_id };
-      console.log(user_id);
+      const payload = req.body;
       const addExpanses = await expansesService.addExpanses(payload);
       res
         .status(201)
@@ -23,9 +21,10 @@ class ExpansesController {
   }
   async editExpanses(req, res) {
     try {
-      const id = req.params.id;
-      const payload = { ...req.body, id: parseInt(id, 10) };
-      const editExpanses = await expansesService.editExpanses(payload);
+      
+      const payload = req.body
+      const id = req.params.id
+      const editExpanses = await expansesService.editExpanses(payload,id);
       res
         .status(201)
         .json({ message: "berhasil  edit transaksi", data: editExpanses });
@@ -39,8 +38,8 @@ class ExpansesController {
   }
   async deleteExpanses(req, res) {
     try {
-      const id = req.params.id;
-      const payload = { ...req.body, id: parseInt(id, 10) };
+    
+      const payload = req.params.id
       const deleteExpanses = await expansesService.deleteExpanses(payload);
       res
         .status(201)
@@ -56,9 +55,9 @@ class ExpansesController {
   //get data expanses total secara bulanan untuk pie chart bar chart
   async totalMonthlyExpanses(req, res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
-
+      
+      const user_id = req.body
+      
       const totalMonthlyExpanses = await expansesService.totalMonthlyExpanses(
         user_id
       );
@@ -76,8 +75,8 @@ class ExpansesController {
   // data table untuk expanses terakhir
   async recentExpanses(req, res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
+     
+      const user_id = req.body
       const recentExpanse = await expansesService.recentExpanse(user_id);
       res.status(201).json({ status: "success", data: recentExpanse });
     } catch (error) {
@@ -92,8 +91,7 @@ class ExpansesController {
   // memanggil data bulan yang ada dalam data base untuk di tampilkan di menu drop down
   async TotalExpansesByFilterMonth(req, res) {
     try {
-      const dataCookie = req.user;
-      const user_id = dataCookie.id;
+      const user_id = req.body
       const selectedMonth = req.query.selectedMonth;
       const selectedYear = req.query.selectedYear;
       if (!selectedMonth || !selectedYear) {
@@ -110,8 +108,29 @@ class ExpansesController {
       }));
 
       res.status(201).json({ status: "success", data: transformedExpenses });
-    } catch (error) {}
+    } catch (error) {
+      res.status(400).json({
+        status: "failed",
+        message: error.message,
+        stack: error,
+      });
+    }
+  }
+  async AllExpanses(req,res){
+  try {
+    const user_id = req.body
+    const AllExpanses = await expansesService.getAllExpanse(user_id)
+    res.status(200).json({ status: "success", data: AllExpanses })
+  } catch (error) {
+    res.status(400).json({
+      status: "failed",
+      message: error.message,
+      stack: error,
+    });
+  }
   }
 }
+
+
 
 module.exports = ExpansesController;

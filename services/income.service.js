@@ -116,6 +116,10 @@ class IncomeService{
     });
     return formattedTransactions;
   }
+  async getAllIncome(userId){
+    const result = await IncomeTransaction.findAll()
+    return result
+  }
 }
 // income  add
 // jumlah total income per bulan
