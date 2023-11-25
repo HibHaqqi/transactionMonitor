@@ -19,9 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"wallet_id",
         onDelate: "CASCADE"
       })
-      this.belongsTo(models.Expanses,{
-        foreignKey: "expanses_id"
-      })
     }
   }
   ExpansesTransaction.init({

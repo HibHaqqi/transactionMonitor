@@ -159,8 +159,9 @@ class ExpansesService {
     return result;
     
   }
-  async getAllExpanse(userId){
-    const result = await ExpansesTransaction.findAll()
+  async getAllExpanse(payload){
+    const {user_id} = payload
+    const result = await ExpansesTransaction.findAll({where:{user_id}})
     return result
   }
 }

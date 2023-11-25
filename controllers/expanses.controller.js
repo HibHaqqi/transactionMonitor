@@ -118,8 +118,8 @@ class ExpansesController {
   }
   async AllExpanses(req,res){
   try {
-    const user_id = req.body
-    const AllExpanses = await expansesService.getAllExpanse(user_id)
+    const payload = req.query
+    const AllExpanses = await expansesService.getAllExpanse(payload)
     res.status(200).json({ status: "success", data: AllExpanses })
   } catch (error) {
     res.status(400).json({
