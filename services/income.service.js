@@ -26,9 +26,8 @@ class IncomeService{
       console.error("Failed to create transaction:", error);
     }
   }
-  async editIncome(payload) {
+  async editIncome(payload,id) {
     const {
-      id,
       user_id,
       wallet_id,
       income_id,
@@ -47,7 +46,7 @@ class IncomeService{
           description,
         },
         {
-          where: { id: id },
+          where: { id },
         }
       );
 
@@ -60,10 +59,10 @@ class IncomeService{
     }
   }
   async deleteIncome(payload) {
-    const { id } = payload;
+    const  id = payload;
     try {
       const deletedIncome = await IncomeTransaction.destroy({
-        where: { id: id }, // Match by the 'id' field
+        where: { id }, // Match by the 'id' field
       });
       if (deletedIncome === 0) {
         throw new Error("Transaction not found");
@@ -116,8 +115,10 @@ class IncomeService{
     });
     return formattedTransactions;
   }
-  async getAllIncome(userId){
-    const result = await IncomeTransaction.findAll()
+  async getAllIncome(payload){
+    const {user_id} = payload
+    console.log(user_id);
+    const result = await IncomeTransaction.findAll({where:{user_id}})
     return result
   }
 }

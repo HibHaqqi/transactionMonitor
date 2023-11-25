@@ -20,7 +20,7 @@ const user = require("../../models/user");
 
 api.use('/users',users);
 api.use('/expanse',expanse);
-api.use('/income',extractToken,income)
+api.use('/income',income)
 api.use('/wallet',wallet);
 
 
