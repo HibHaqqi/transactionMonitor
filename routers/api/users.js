@@ -1,5 +1,6 @@
 const express = require("express");
 const LoginRegisController = require("../../controllers/loginregis.controller");
+const uploader = require("../../middleware/uploader");
 const users = express.Router();
 
 const loginRegisController = new LoginRegisController();
@@ -105,6 +106,15 @@ users.post("/v1/login", loginRegisController.userLogin);
  *       200:
  *         description: Logout successful.
  */
+
+users.get("/v1/cloudinary",loginRegisController.getOneUser)
+users.post("/v1/cloudinary",uploader.single('file'), loginRegisController.uploadPhoto)
+users.put("/v1/cloudinary", loginRegisController.savePhoto)
+
+
+
+
+
 users.get("/logout", (req, res) => {
   // Clear the JWT token by setting an expired cookie
   res.cookie("access-token", "", { expires: new Date(0), httpOnly: true });

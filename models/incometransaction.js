@@ -19,10 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey : "wallet_id",
         onDelete: "CASCADE" // jika wallet dihapus maka transaksi dihapus
       })
-      this.belongsTo(models.Income, {
-        foreignKey : "income_id",
-        onDelete: "CASCADE" // jika wallet dihapus maka transaksi dihapus
-      })
     }
   }
   IncomeTransaction.init({
