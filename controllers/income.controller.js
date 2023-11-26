@@ -51,10 +51,9 @@ class IncomeController {
   //get data Income total secara bulanan untuk pie chart bar chart
   async totalMonthlyIncome(req, res) {
     try {
-      const user_id = req.body;
-
+      const payload = req.query
       const totalMonthlyIncome = await incomeService.totalMonthlyIncome(
-        user_id
+        payload
       );
       res.status(201).json({ status: "success", data: totalMonthlyIncome });
     } catch (error) {

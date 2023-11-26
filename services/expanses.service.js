@@ -79,16 +79,17 @@ class ExpansesService {
       throw new Error("Data tidak berhasil dihapus");
     }
   }
-  async totalMonthlyExpanses(userId) {
+  async totalMonthlyExpanses(payload) {
+    const {user_id} = payload
     const result = await sequelize.query(
       `SELECT
                     DATE_TRUNC('month', date_transaction) AS month,
                     SUM(amount) AS total_amount 
                 FROM "ExpansesTransactions"
-                WHERE user_id = :userId
+                WHERE user_id = :user_id
                 GROUP BY month
                 ORDER BY month;`,
-      { replacements: { userId: userId }, type: Sequelize.QueryTypes.SELECT }
+      { replacements: { user_id: user_id }, type: Sequelize.QueryTypes.SELECT }
     );
     return result;
   }

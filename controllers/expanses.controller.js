@@ -56,10 +56,10 @@ class ExpansesController {
   async totalMonthlyExpanses(req, res) {
     try {
       
-      const user_id = req.body
+      const payload = req.query
       
       const totalMonthlyExpanses = await expansesService.totalMonthlyExpanses(
-        user_id
+        payload
       );
       res.status(201).json({ status: "success", data: totalMonthlyExpanses });
     } catch (error) {
