@@ -6,7 +6,6 @@ class IncomeController {
   async addIncome(req, res) {
     try {
       const payload = req.body;
-      console.log(user_id);
       const addIncome = await incomeService.addIncome(payload);
       res
         .status(201)
@@ -21,8 +20,8 @@ class IncomeController {
   async editIncome(req, res) {
     try {
       const payload = req.body;
-      const id = req.params.id;
-      const editIncome = await incomeService.editIncome(payload, id);
+      const id = req.params.id
+      const editIncome = await incomeService.editIncome(payload,id);
       res
         .status(201)
         .json({ message: "berhasil  edit transaksi", data: editIncome });
@@ -52,10 +51,9 @@ class IncomeController {
   //get data Income total secara bulanan untuk pie chart bar chart
   async totalMonthlyIncome(req, res) {
     try {
-      const user_id = req.body;
-
+      const payload = req.query
       const totalMonthlyIncome = await incomeService.totalMonthlyIncome(
-        user_id
+        payload
       );
       res.status(201).json({ status: "success", data: totalMonthlyIncome });
     } catch (error) {
@@ -88,8 +86,8 @@ class IncomeController {
 
   async allIncome(req, res) {
     try {
-      const user_id = req.body;
-      const AllIncome = await incomeService.getAllIncome(user_id);
+      const payload = req.query;
+      const AllIncome = await incomeService.getAllIncome(payload);
       res.status(200).json({ status: "success", data: AllIncome });
     } catch (error) {
       res.status(400).json({

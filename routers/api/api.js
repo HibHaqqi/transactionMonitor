@@ -6,7 +6,13 @@ const wallet = require("./wallet")
 const income = require("./income");
 const { verifyTokens, extractToken } = require("../../middleware/jwt");
 const { Expanses } = require("../../models");
+const { User } = require("../../models");
 
+
+// cloudinary
+const uploader = require('../../middleware/uploader');
+const uploadCloudinary = require('../../libs/upload-cloudinary');
+const user = require("../../models/user");
 // JWT
 // use this as middleware to use decoded token
 // api.use(extractToken);
@@ -14,29 +20,9 @@ const { Expanses } = require("../../models");
 
 api.use('/users',users);
 api.use('/expanse',expanse);
-api.use('/income',extractToken,income)
+api.use('/income',income)
 api.use('/wallet',wallet);
 
 
-
-
-
-
-
-api.get("/v1/category", verifyTokens, async (req, res) => {
-  const expanse = await Expanses.findAll();
-  try {
-    res.status(200).json({
-      status: "success",
-      data: expanse,
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: "failed",
-      message: error.message,
-      stack: error,
-    });
-  }
-});
 
 module.exports = api;

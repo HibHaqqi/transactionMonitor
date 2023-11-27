@@ -11,9 +11,9 @@ module.exports = {
       "ssl": {
         "require": true, // Force SSL
         "rejectUnauthorized": false, // Bypass certificate validation (use with caution)
-      },
-      "sslmode": 'require', // Specify sslmode here
-    }
+        },
+        "sslmode": 'require', // Specify sslmode here
+      }
 
   },
   "test": {
