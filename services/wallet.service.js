@@ -74,6 +74,14 @@ class WalletService {
       throw error;
     }
   }
+  //unit testing delete
+  async delete(category){
+    await Wallet.destroy({
+        where :{
+            category:category
+        }
+    })
+}
 }
 
 module.exports = WalletService;
