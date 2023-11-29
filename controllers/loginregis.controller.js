@@ -35,7 +35,6 @@ class LoginRegisController {
         try {
             const payload = req.body;
             const response = await loginService.loginCheck(payload);
-            console.log(response.dataValues);
             const token = createTokens(response.dataValues);
             // res.cookie("access-token", accessToken, {
             //     maxAge: 3600000 * 240,
