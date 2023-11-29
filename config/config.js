@@ -9,11 +9,11 @@ module.exports = {
     "dialect": "postgres",
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "postgres",
+    "password": "12345",
+    "database": "transmon_test",
+    "port": 5000,
+    "dialect": "postgres"
   },
   "production": {
     "username": "root",

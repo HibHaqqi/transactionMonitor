@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "test": "yarn jest --watch",
+    "dev": "nodemon index.js",
+    "db:create:test": "NODE_ENV=test sequelize db:create",
+    "db:migrate:test": "NODE_ENV=test sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,9 @@
     "sequelize": "^6.34.0",
     "swagger-jsdoc": "^5.0.1",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   }
 }
