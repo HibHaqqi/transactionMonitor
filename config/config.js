@@ -14,7 +14,6 @@ module.exports = {
         },
         "sslmode": 'require', // Specify sslmode here
       }
-
   },
   "test": {
     "username": "postgres",

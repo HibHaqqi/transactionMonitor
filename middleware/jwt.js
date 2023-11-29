@@ -16,40 +16,22 @@ const createTokens = (user) => {
   return accessToken;
 };
 
-const extractToken = (req, res, next) => {
-  const accessToken = req.cookies["access-token"];
-  if (accessToken) {
-    const decodedToken = verify(accessToken, jwk);
-    req.user = decodedToken;
-  } else {
-    req.user = null;
-  }
-  return next();
-};
-
-// if needed !!
-const verifyTokens = (req, res, next) => {
-  const accessToken = req.cookies["access-token"];
-  if (!accessToken) {
-    res.status(200).json({ message: "login please" });
-    //return next();
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
   }
   try {
-    const validToken = verify(accessToken, jwk);
-    if (validToken) {
-      // req.authenticated = true
-      req.user = validToken;
-      return next();
-    }
+    const decoded = verify(token, jwk);
+    req.user = decoded;
+    next();
   } catch (error) {
-    res.status(400).json({
-      message: error.message,
-    });
+    console.error(error);
+    return res.status(403).json({ error: 'Invalid Token' });
   }
 };
-
 module.exports = {
   createTokens,
-  extractToken,
-  verifyTokens,
+  authenticateToken
 };

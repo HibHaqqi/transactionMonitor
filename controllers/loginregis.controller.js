@@ -26,7 +26,7 @@ class LoginRegisController {
             } else if (error.message === "Email sudah terdaftar") {
                 res.status(409).json({ message: "Email sudah terdaftar" });
             } else {
-                res.status(500).json({ message: "Terjadi kesalahan" });
+                res.status(500).json({ message: error.message });
             }
         }
     }
@@ -35,7 +35,6 @@ class LoginRegisController {
         try {
             const payload = req.body;
             const response = await loginService.loginCheck(payload);
-            console.log(response.dataValues);
             const token = createTokens(response.dataValues);
             // res.cookie("access-token", accessToken, {
             //     maxAge: 3600000 * 240,
