@@ -129,4 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-.config
+# Ignore folder "config"
+config/
+
