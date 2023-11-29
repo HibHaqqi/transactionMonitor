@@ -26,7 +26,7 @@ class LoginRegisController {
             } else if (error.message === "Email sudah terdaftar") {
                 res.status(409).json({ message: "Email sudah terdaftar" });
             } else {
-                res.status(500).json({ message: "Terjadi kesalahan" });
+                res.status(500).json({ message: error.message });
             }
         }
     }
