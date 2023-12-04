@@ -23,5 +23,6 @@ jobs:
             git pull origin main
             git status
             npm install
-            pm2 reload api.griyadandelion.space
+            pm2 stop api.griyadandelion.space
             pm2 restart api.griyadandelion.space
+            

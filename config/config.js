@@ -5,7 +5,7 @@ module.exports = {
     "username": "default",
     "password": "4GQPtrKc5hwj",
     "database": "verceldb",
-    "host": "ep-square-salad-16957691-pooler.ap-southeast-1.postgres.vercel-storage.com",
+    "host":"ep-square-salad-16957691-pooler.ap-southeast-1.postgres.vercel-storage.com",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

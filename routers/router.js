@@ -26,7 +26,7 @@
   router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   router.use('/', (req, res) => {
-      
+      res.send("hello i'm Running")
   });
 
   module.exports = router;
