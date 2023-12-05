@@ -1,11 +1,11 @@
-
+require('dotenv').config();
 
 module.exports = {
   "development": {
-    "username": "default",
-    "password": "4GQPtrKc5hwj",
-    "database": "verceldb",
-    "host":"ep-square-salad-16957691-pooler.ap-southeast-1.postgres.vercel-storage.com",
+    "username": process.env.POSTGRES_USER,
+    "password": process.env.POSTGRES_PASSWORD,
+    "database": process.env.POSTGRES_DATABASE,
+    "host":process.env.POSTGRES_HOST,
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

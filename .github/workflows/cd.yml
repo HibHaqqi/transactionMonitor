@@ -22,7 +22,9 @@ jobs:
             cd /var/www/api.griyadandelion.space
             git pull origin main
             git status
-            npm install --prefix /var/www/api.griyadandelion.space
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            npm install 
             pm2 stop api.griyadandelion.space
             pm2 restart api.griyadandelion.space
             
