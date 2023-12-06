@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"node index.js",
     "test": "yarn jest --watch",
     "dev": "nodemon index.js",
     "db:create:test": "NODE_ENV=test sequelize db:create",
