@@ -11,6 +11,6 @@ describe("unit Testing - wallet.service.js",()=>{
         expect(walletNew.category).toBe(walletData.category);
         expect(walletNew.description).toBe(walletData.description);
 
-        //await walletService.delete(walletData.category)
+        await walletService.delete(walletData.category)
     })
 })

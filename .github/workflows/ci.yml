@@ -25,5 +25,5 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: npm install
       - name: Run tests 🧪
-        run: yarn test
+        run: npm run test
 
