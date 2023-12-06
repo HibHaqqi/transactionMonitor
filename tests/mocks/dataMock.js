@@ -1,7 +1,7 @@
 module.exports = {
     userMock :{
         name :"haqqi",
-        email :"haqqi14@gmail.com",
+        email :"haqqi10@gmail.com",
         password :"jarwokuat",
         role:"admin"
     },

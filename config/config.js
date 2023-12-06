@@ -16,11 +16,18 @@ module.exports = {
       }
   },
   "test": {
-    "username": "postgres",
-    "password": "12345",
-    "database": "transmon_test",
-    "port": 5000,
-    "dialect": "postgres"
+    "username": process.env.TESTDB_USER,
+    "password": process.env.TESTDB_PASSWORD,
+    "database": process.env.TESTDB_DATABASE,
+    "host": process.env.TESTDB_HOST,
+    "dialect": 'postgres',
+    "dialectOptions": {
+      "ssl": {
+        "require": true, // Force SSL
+        "rejectUnauthorized": false, // Bypass certificate validation (use with caution)
+        },
+        "sslmode": 'require', // Specify sslmode here
+      }
   },
   "production": {
     "username": "root",
