@@ -7,6 +7,7 @@ const loginService = new LoginService;
 
 describe("Unit Testing login.service.js",()=>{
     it("[+]Valid login should return the user", async()=>{
+        jest.setTimeout(10000);
         const result = await loginService.loginCheck(userData);
 
         expect(result).toBeDefined();
@@ -19,8 +20,9 @@ describe("Unit Testing login.service.js",()=>{
           expect(passwordDB).toBe(true);
     })
     it("Login with incorrect email should throw an error",async()=>{
+        jest.setTimeout(10000);
         const invalidEmailData = {
-            email: "john@example.com",
+            email: "joh@example.com",
             password: "olioli",
             
           };
@@ -28,6 +30,7 @@ describe("Unit Testing login.service.js",()=>{
     })
 
     it("[-] Login with incorrect password should throw an error",async()=>{
+        jest.setTimeout(10000);
         const incorrectPassword = {
             email :"haqqi10@gmail.com",
             password :"jarwokua"

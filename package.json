@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start":"node index.js",
-    "test": "yarn jest --watch",
+    "test": "yarn jest --watchAll",
     "dev": "nodemon index.js",
     "db:create:test": "NODE_ENV=test sequelize db:create",
-    "db:migrate:test": "NODE_ENV=test sequelize db:migrate"
+    "db:migrate:test": "set NODE_ENV=test&& sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "sequelize-cli": "^6.6.0"
   }
+  
 }

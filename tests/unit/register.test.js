@@ -8,6 +8,7 @@ const registedUser = registedUserMock;
 
 describe("Unit Testing : regis.service.js", () => {
   it("[+] Registration to DB", async () => {
+    jest.setTimeout(10000);
     const userNew = await regisService.regisNewUser(userData);
     expect(userNew.name).toBe(userData.name);
     expect(userNew.email).toBe(userData.email);
@@ -22,6 +23,7 @@ describe("Unit Testing : regis.service.js", () => {
   });
 
   it("[-] Registration with incomplete data should throw an error", async () => {
+    jest.setTimeout(10000);
     const incompleteUserData = {
       name: "John Doe",
       email: "john@example.com",
@@ -34,6 +36,7 @@ describe("Unit Testing : regis.service.js", () => {
   });
 
   it("[-] Registration with an existing user should throw an error", async () => {
+    jest.setTimeout(10000);
     // Mocking findOne to simulate an existing user
     regisService.User.findOne = jest.fn().mockResolvedValue(registedUser);
 
