@@ -18,11 +18,12 @@ module.exports = {
       }
   },
   "test": {
-    "username": "postgres",
-    "password": "12345",
-    "database": "transmon_test",
-    "port": 5000,
-    "dialect": "postgres"
+    "username": "default",
+    "password": "6WolGL1hexBn",
+    "database": "verceldb",
+    "dialect": "postgres",
+    "host": "ep-bitter-bread-48186980-pooler.us-east-1.postgres.vercel-storage.com",
+
   },
   "production": {
     "username": "root",
