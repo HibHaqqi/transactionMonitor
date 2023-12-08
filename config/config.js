@@ -16,20 +16,20 @@ module.exports = {
             sslmode: "require", // Specify sslmode here
         },
     },
-    "test": {
-      "username": process.env.TESTDB_USER,
-      "password": process.env.TESTDB_PASSWORD,
-      "database": process.env.TESTDB_DATABASE,
-      "host": process.env.TESTDB_HOST,
-      "dialect": 'postgres',
-      "dialectOptions": {
-        "ssl": {
-          "require": true, // Force SSL
-          "rejectUnauthorized": false, // Bypass certificate validation (use with caution)
-          },
-          "sslmode": 'require', // Specify sslmode here
-        }
-    }
+    test: {
+        username: process.env.TESTDB_USER,
+        password: process.env.TESTDB_PASSWORD,
+        database: process.env.TESTDB_DATABASE,
+        host: process.env.TESTDB_HOST,
+        dialect: "postgres",
+        dialectOptions: {
+            ssl: {
+                require: true, // Force SSL
+                rejectUnauthorized: false, // Bypass certificate validation (use with caution)
+            },
+            sslmode: "require", // Specify sslmode here
+        },
+    },
     // test: {
     //     username: "default",
     //     password: "6WolGL1hexBn",

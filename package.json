@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start":"node index.js",
-    "test": "yarn jest --watchAll",
+    "test": "node jest --watchAll",
     "dev": "nodemon index.js",
     "db:create:test": "NODE_ENV=test sequelize db:create",
     "db:migrate:test": "set NODE_ENV=test&& sequelize db:migrate"
