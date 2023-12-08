@@ -1,32 +1,43 @@
-  const express = require("express");
-  const api = require("./api/api");
-  const router = express.Router();
-  const swaggerJSDoc = require("swagger-jsdoc");
-  const swaggerUi = require("swagger-ui-express");
+const express = require("express");
+const api = require("./api/api");
+const router = express.Router();
+const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
-
-
-  router.use('/api', api);
-  const swaggerDefinition = {
-      openapi: "3.0.0",
-      info: {
+router.use("/api", api);
+const swaggerDefinition = {
+    openapi: "3.0.0",
+    info: {
         title: "API For TransactionMonitor",
         version: "1.0.0",
-      },
-    };
-    const options = {
-      swaggerDefinition,
-      // Paths to files containing OpenAPI definitions
-      apis: ['./routers/api/*.js'],
-      
-    };
-    
-    const swaggerSpec = swaggerJSDoc(options);
+    },
+    security: [
+        {
+            bearerAuth: [],
+        },
+    ],
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT",
+            },
+        },
+    },
+};
+const options = {
+    swaggerDefinition,
+    // Paths to files containing OpenAPI definitions
+    apis: ["./routers/api/*.js"],
+};
 
-  router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+const swaggerSpec = swaggerJSDoc(options);
 
-  router.use('/', (req, res) => {
-      res.send("hello i'm Running")
-  });
+router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  module.exports = router;
+// router.use("/", (req, res) => {
+//     res.send("hello i'm Running");
+// });
+
+module.exports = router;

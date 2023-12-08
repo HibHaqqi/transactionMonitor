@@ -175,6 +175,20 @@ expanse.delete("/v1/delete/:id", expansesController.deleteExpanses);
  *   get:
  *     tags: [Expanse]
  *     summary: Get total monthly expanses
+ *     requestBody:
+ *       content:
+ *          application/json:
+ *              schema:
+ *                      type: object
+ *                      required:
+ *                         - user_id
+ *                      properties:
+ *                          user_id:
+ *                              required: true
+ *                              type: integer
+ *                              description: User Id
+ *                              example: 1
+ *              
  *     responses:
  *       '201':
  *         description: Successful response
@@ -274,6 +288,50 @@ expanse.get("/v1/recent", expansesController.recentExpanses)
 
 expanse.get("/v1/filter", expansesController.TotalExpansesByFilterMonth)
 
+
+/**
+ * @swagger
+ * /api/expanse/v1/getall:
+ *   get:
+ *     summary: Mengambil semua data pengeluaran berdasarkan user ID.
+ *     description: Mengembalikan daftar pengeluaran berdasarkan ID pengguna.
+ *     tags:
+ *       - Expanse
+ *     parameters:
+ *       - in: query
+ *         name: user_id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID pengguna yang akan digunakan untuk mencari data pengeluaran.
+ *     responses:
+ *       '200':
+ *         description: Success
+ *         content:
+ *           application/json:
+ *             example:
+ *               status: success
+ *               data:
+ *                 - id: 114
+ *                   user_id: 1
+ *                   wallet_id: 1
+ *                   expanses_id: "Food & Drink"
+ *                   amount: 15000
+ *                   date_transaction: "2023-11-25T00:00:00.000Z"
+ *                   description: "qweasd"
+ *                   createdAt: "2023-11-25T10:02:17.163Z"
+ *                   updatedAt: "2023-11-25T14:25:45.859Z"
+ *       '401':
+ *         description: Bad Requst
+ *         content:
+ *         application/json:
+ *           example:
+ *              status: error
+ *              data:
+ *                  error: Unauthorized
+ *       '500':
+ *         description: Terjadi kesalahan server.
+ */
 expanse.get("/v1/getall",expansesController.AllExpanses)
 
 
