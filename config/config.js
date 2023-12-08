@@ -1,12 +1,19 @@
 require("dotenv").config();
 
 module.exports = {
-    development: {
-        username: "postgres",
-        password: "123",
-        database: "testinguserid",
-        host: "127.0.0.1",
-        dialect: "postgres",
+    "development": {
+        "username": process.env.POSTGRES_USER,
+        "password": process.env.POSTGRES_PASSWORD,
+        "database": process.env.POSTGRES_DATABASE,
+        "host":process.env.POSTGRES_HOST,
+        "dialect": "postgres",
+        "dialectOptions": {
+          "ssl": {
+            "require": true, // Force SSL
+            "rejectUnauthorized": false, // Bypass certificate validation (use with caution)
+            },
+            "sslmode": 'require', // Specify sslmode here
+          }
     },
     test: {
         username: process.env.TESTDB_USER,
