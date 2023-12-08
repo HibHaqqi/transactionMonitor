@@ -15,8 +15,9 @@ const loginRegisController = new LoginRegisController();
  * @swagger
  * /api/users/v1/regis:
  *   post:
- *     tags: [User]
  *     summary: Register a new user.
+ *     tags: [User]
+ *     security: []
  *     requestBody:
  *       required: true
  *       content:
@@ -66,6 +67,7 @@ users.post("/v1/regis", loginRegisController.postRegis);
  *   post:
  *     tags: [User]
  *     summary: Log in with user credentials.
+ *     security: []
  *     requestBody:
  *       required: true
  *       content:
